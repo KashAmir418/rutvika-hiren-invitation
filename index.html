@@ -2307,7 +2307,7 @@
     }
     function burst(x, y) { const c = FWC[~~(Math.random() * FWC.length)]; for (let i = 0; i < 80; i++)fps.push(new FP(x, y, c)); for (let i = 0; i < 14; i++) { const p = new FP(x, y, FWC[~~(Math.random() * FWC.length)]); const a = (i / 14) * Math.PI * 2; p.vx = Math.cos(a) * 12; p.vy = Math.sin(a) * 12; p.sz = 2; fps.push(p); } }
     function animFW() { fX.fillStyle = 'rgba(242,234,216,.1)'; fX.fillRect(0, 0, fC.width, fC.height); fps = fps.filter(p => p.al > 0); fps.forEach(p => { p.tick(); p.draw(); }); if (fps.length > 0) requestAnimationFrame(animFW); else { fX.clearRect(0, 0, fC.width, fC.height); fgo = false; } }
-    new IntersectionObserver(e => { e.forEach(en => { if (en.isIntersecting && !fgo) { fgo = true; animFW(); const W = fC.width, H = fC.height;[[.25, .3], [.75, .25], [.5, .14], [.15, .38], [.85, .34], [.5, .2], [.38, .26], [.62, .18]].forEach(([px, py], i) => setTimeout(() => burst(W * px, H * py), i * 370)); let n = 0; const iv = setInterval(() => { burst(W * (.1 + Math.random() * .8), H * (.05 + Math.random() * .45)); if (++n > 10) clearInterval(iv); }, 300); } }); }, { threshold: .1 }).observe(document.getElementById('footer'));
+    new IntersectionObserver(e => { e.forEach(en => { if (en.isIntersecting && !fgo) { fgo = true; animFW(); const W = fC.width, H = fC.height;[[.25, .3], [.75, .25], [.5, .14], [.15, .38], [.85, .34], [.5, .2], [.38, .26], [.62, .18]].forEach(([px, py], i) => setTimeout(() => burst(W * px, H * py), i * 370)); let n = 0; const iv = setInterval(() => { burst(W * (.1 + Math.random() * .8), H * (.05 + Math.random() * .45)); if (++n > 10) clearInterval(iv); }, 300); } }); }, { threshold: 0 }).observe(document.getElementById('venue'));
   </script>
 </body>
 
